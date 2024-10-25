@@ -1,0 +1,4 @@
+#libraries
+openai
+python-dotenv
+fastapi
