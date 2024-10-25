@@ -1,4 +1,4 @@
-#libraries
-openai
-python-dotenv
 fastapi
+uvicorn
+python-dotenv
+openai
