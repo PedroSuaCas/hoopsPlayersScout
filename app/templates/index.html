@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Consulta de Scouting</h1>
+    <form id="queryForm">
+        <input type="text" id="queryInput" placeholder="Escribe tu consulta..." required>
+        <button type="submit">Consultar</button>
+    </form>
+    <h2>Respuesta:</h2>
+    <p id="responseText"></p>
+
+    <script>
+        $(document).ready(function() {
+            $('#queryForm').on('submit', function(e) {
+                e.preventDefault();
+                const userInput = $('#queryInput').val();
+
+                $.ajax({
+                    url: '/api/query',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ input: userInput }),
+                    success: function(data) {
+                        $('#responseText').text(data.response);
+                    },
+                    error: function(error) {
+                        $('#responseText').text('Error al consultar la API.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,6 @@
-fastapi
-uvicorn
-python-dotenv
+Flask
+Flask-Cors
+requests
+beautifulsoup4
 openai
+python-dotenv

@@ -1,15 +1,14 @@
-from fastapi import APIRouter
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from app.api import consulta_jugador
+from flask import Blueprint, render_template, request, jsonify
+from .services import interpret_query
 
-#To create the routes and endpoints o hoopsplayerscoutapp
-router = APIRouter()
+main = Blueprint('main', __name__)
 
-router.add_api_route("/consulta_jugador/", consulta_jugador, methods=["POST"])
-#router.mount("/static", StaticFiles(directory="app/static"), name="static")
+@main.route('/')
+def index():
+    return render_template('index.html')
 
-@router.get("/", response_class=HTMLResponse)
-async def get_index():
-    with open("app/static/index.html") as f:
-        return f.read()
+@main.route('/api/query', methods=['POST'])
+def query():
+    user_input = request.json.get('input')
+    response_text = interpret_query(user_input)
+    return jsonify({'response': response_text})
