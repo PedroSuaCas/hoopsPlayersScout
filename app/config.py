@@ -5,5 +5,5 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-    OPENAI_ORG_ID  = os.getenv('OPENAI_ORG_ID') 
+    MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
+
